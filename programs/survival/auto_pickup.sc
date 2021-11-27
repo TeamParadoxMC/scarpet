@@ -5,11 +5,20 @@ __config() -> (
    )
 );
 
+__command()->(
+
+	
+
+);
+
 // seems like drops are generated later, before the callback is made
 // so we execute moving items at the end of the tick
 __on_player_breaks_block(player, block) -> 
-(
-	schedule(0,'_move_items_to_inventory', player, pos(block))
+(	
+	
+	if(query(player,'sneaking'),
+		schedule(0,'_move_items_to_inventory', player, pos(block)))
+	
 );
 
 
