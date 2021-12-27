@@ -1,8 +1,6 @@
 __config() -> {'stay_loaded' -> true};
 
 __command()->(
-	player= player();
-	print('loaded');
 );
 
 enable() -> (
@@ -46,7 +44,7 @@ __on_player_breaks_block(player, block) -> (
 
 _move_items_to_inventory(player, coords) ->
 (
-	selector = str('@e[type=item,x=%d,y=%d,z=%d,dx=1,dy=1,dz=1]',coords);
+	selector = str('@e[type=item,x=%d,y=%d,z=%d,dx=1.5,dy=1.5,dz=1.5]',coords);
 	for (filter(entity_selector(selector), _~'pickup_delay' == 10 ),
 		current_entity_item = _ ;		
 		try
