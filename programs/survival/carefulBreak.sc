@@ -2,16 +2,17 @@ __config() -> {'stay_loaded' -> true};
 
 __command()->(
 	player=player();
-	print(player,'Please enter the subcommand.')
+	print(player,'Please enter the subcommand.');
 );
 
 enable() -> (
 	player= player();
 
 	if(query(player,'has_scoreboard_tag','sneak_careful_break'), 
-	(modify(player,'clear_tag','sneak_careful_break')),
-	modify(player,'tag','careful_break');
+		modify(player,'clear_tag','sneak_careful_break')
 	);
+
+	modify(player,'tag','careful_break');
 
 );
 
@@ -25,9 +26,10 @@ sneak() -> (
 	player=player();
 
 	if(query(player,'has_scoreboard_tag','careful_break'), 
-	(modify(player,'clear_tag','careful_break')),
-	modify(player,'tag','sneak_careful_break');
+		modify(player,'clear_tag','careful_break')
 	);
+	modify(player,'tag','sneak_careful_break');
+	
 
 );
 
