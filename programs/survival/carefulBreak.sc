@@ -2,10 +2,10 @@ __config() -> {'stay_loaded' -> true};
 
 __command()->(
 	player=player();
-	print(player,'Please enter the subcommand.');
+	print(player,format('r Please enter the subcommand.'));
 );
 
-enable() -> (
+always() -> (
 	player= player();
 
 	if(query(player,'has_scoreboard_tag','sneak_careful_break'), 
