@@ -1,17 +1,35 @@
-__config() -> {'stay_loaded' -> true};   
+__config() -> {
+  'stay_loaded' -> true,
+  'scope' -> 'global'
+  };   
 
-global_items={'egg', 'arrow', 'rotten_flesh', 'bone', 'gunpowder','dirt', 'cobblestone'};
-    
-__command()->(
-_kill();
-);
+global_items={'egg','arrow','rotten_flesh','bone','string','gunpowder','dirt','cobblestone','grass','warped_nylium','gravel','stone','endstone','wheat_seed','warped_wart_block','warped_stem'};
 
-_kill()->(
+__command()->(print(format('r Please select sub-category.')));
+
+zombies()->(
+
+  player=player();
   zombies = entity_selector('@e[type=minecraft:zombie]');
   for(zombies,
   item=query(_,'holds'):0;
 
-  if(has(global_items,item), modify(_,'kill'););
-  
+  if(has(global_items,item),
+   modify(_,'kill');
+   print(player,format('e Killed zombies.'));
    );
+
+  );
+);
+
+emen() -> (
+  player=player();
+  emen= entity_selector('@e[type=minecraft:enderman]');
+  for(emen,
+    item=query(_,'holds'):0;
+    if(has(global_items,item), 
+    modify(_,'kill');
+    print(player,format('e Killed endermen.'));
+    );
+    );
 );

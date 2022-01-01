@@ -1,17 +1,18 @@
 __config() -> {'stay_loaded' -> true};
 
 __command()->(
-	player= player();
-	print('loaded');
+	player=player();
+	print(player,format('r Please enter the subcommand.'));
 );
 
-enable() -> (
+always() -> (
 	player= player();
 
 	if(query(player,'has_scoreboard_tag','sneak_careful_break'), 
-	(print('You have already enabled sneak mode. Disable first to enable non sneak mode')),
-	modify(player,'tag','careful_break');
+		modify(player,'clear_tag','sneak_careful_break')
 	);
+
+	modify(player,'tag','careful_break');
 
 );
 
@@ -25,11 +26,11 @@ sneak() -> (
 	player=player();
 
 	if(query(player,'has_scoreboard_tag','careful_break'), 
-	(print('You have already enabled non sneak mode. Disable first to enable sneak mode')),
-	modify(player,'tag','sneak_careful_break');
+		modify(player,'clear_tag','careful_break')
 	);
-
+	modify(player,'tag','sneak_careful_break');
 	
+
 );
 
 __on_player_breaks_block(player, block) -> (	
@@ -46,7 +47,7 @@ __on_player_breaks_block(player, block) -> (
 
 _move_items_to_inventory(player, coords) ->
 (
-	selector = str('@e[type=item,x=%d,y=%d,z=%d,dx=1,dy=1,dz=1]',coords);
+	selector = str('@e[type=item,x=%d,y=%d,z=%d,dx=1.5,dy=1.5,dz=1.5]',coords);
 	for (filter(entity_selector(selector), _~'pickup_delay' == 10 ),
 		current_entity_item = _ ;		
 		try
